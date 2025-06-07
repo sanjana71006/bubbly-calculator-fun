@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Mic, HelpCircle, Volume2, VolumeX } from 'lucide-react';
+import { Mic, HelpCircle, Volume2, VolumeX, X, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AIRobotProps {
@@ -11,9 +11,11 @@ interface AIRobotProps {
   isSpeechEnabled: boolean;
   onToggleSpeech: () => void;
   onHelp: () => void;
+  isTyping?: boolean;
+  isIdle?: boolean;
 }
 
-type RobotState = 'idle' | 'listening' | 'thinking' | 'celebrating' | 'error';
+type RobotState = 'idle' | 'listening' | 'thinking' | 'celebrating' | 'error' | 'typing';
 
 const AIRobot = ({ 
   isListening, 
@@ -22,11 +24,15 @@ const AIRobot = ({
   isSpecialResult, 
   isSpeechEnabled,
   onToggleSpeech,
-  onHelp 
+  onHelp,
+  isTyping = false,
+  isIdle = false
 }: AIRobotProps) => {
   const [robotState, setRobotState] = useState<RobotState>('idle');
   const [speechBubble, setSpeechBubble] = useState<string>('');
   const [showBubble, setShowBubble] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (isListening) {
@@ -35,43 +41,109 @@ const AIRobot = ({
       setShowBubble(true);
     } else if (isCalculating) {
       setRobotState('thinking');
-      setSpeechBubble("Let me do the math 🤔...");
+      setSpeechBubble("Let me calculate that for you! 🤔");
       setShowBubble(true);
+    } else if (isTyping) {
+      setRobotState('typing');
+      setSpeechBubble("I'm watching! 👀");
+      setShowBubble(true);
+      setTimeout(() => setShowBubble(false), 2000);
     } else if (lastResult) {
       if (isSpecialResult) {
         setRobotState('celebrating');
-        setSpeechBubble("Wow! Special result! 🎉💥");
+        setSpeechBubble("Wow! Special result! 🎉✨");
       } else {
-        setRobotState('idle');
-        setSpeechBubble("Here's the answer! 🧠✨");
+        setRobotState('celebrating');
+        setSpeechBubble("Here's the result! 🧠💫");
       }
       setShowBubble(true);
       setTimeout(() => setShowBubble(false), 3000);
+    } else if (isIdle) {
+      setRobotState('idle');
+      const idleMessages = [
+        "Ready for your next calculation! 🤖",
+        "I'm here to help! ✨",
+        "What math adventure next? 📐"
+      ];
+      setSpeechBubble(idleMessages[Math.floor(Math.random() * idleMessages.length)]);
+      setShowBubble(true);
+      setTimeout(() => setShowBubble(false), 2500);
     } else {
       setRobotState('idle');
       setShowBubble(false);
     }
-  }, [isListening, isCalculating, lastResult, isSpecialResult]);
+  }, [isListening, isCalculating, lastResult, isSpecialResult, isTyping, isIdle]);
 
-  const showError = (message: string) => {
-    setRobotState('error');
-    setSpeechBubble(message);
-    setShowBubble(true);
-    setTimeout(() => setShowBubble(false), 4000);
-  };
+  // Gentle floating movement for idle state
+  useEffect(() => {
+    if (robotState === 'idle' && isIdle) {
+      const interval = setInterval(() => {
+        setPosition(prev => ({
+          x: prev.x + (Math.random() - 0.5) * 2,
+          y: prev.y + (Math.random() - 0.5) * 2
+        }));
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [robotState, isIdle]);
 
   const getRobotEyes = () => {
     switch (robotState) {
       case 'listening':
-        return '👂 👂';
+        return (
+          <div className="flex justify-center gap-1">
+            <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse animation-delay-200"></div>
+          </div>
+        );
       case 'thinking':
-        return '🤔 🤔';
+        return (
+          <div className="flex justify-center gap-1">
+            <div className="w-3 h-2 bg-purple-400 rounded-full animate-bounce"></div>
+            <div className="w-3 h-2 bg-purple-400 rounded-full animate-bounce animation-delay-200"></div>
+          </div>
+        );
       case 'celebrating':
-        return '🤩 🤩';
+        return (
+          <div className="flex justify-center gap-1">
+            <div className="w-4 h-4 bg-yellow-400 rounded-full animate-ping"></div>
+            <div className="w-4 h-4 bg-yellow-400 rounded-full animate-ping animation-delay-200"></div>
+          </div>
+        );
+      case 'typing':
+        return (
+          <div className="flex justify-center gap-1">
+            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse animation-delay-200"></div>
+          </div>
+        );
       case 'error':
-        return '😅 😅';
+        return (
+          <div className="flex justify-center gap-1">
+            <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+            <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+          </div>
+        );
       default:
-        return '😊 😊';
+        return (
+          <div className="flex justify-center gap-1">
+            <div className="w-3 h-3 bg-white rounded-full"></div>
+            <div className="w-3 h-3 bg-white rounded-full"></div>
+          </div>
+        );
+    }
+  };
+
+  const getRobotMouth = () => {
+    switch (robotState) {
+      case 'celebrating':
+        return <div className="w-4 h-2 bg-pink-400 rounded-full mx-auto mt-1"></div>;
+      case 'thinking':
+        return <div className="w-2 h-2 bg-purple-300 rounded-full mx-auto mt-1"></div>;
+      case 'error':
+        return <div className="w-3 h-1 bg-red-300 rounded-full mx-auto mt-1"></div>;
+      default:
+        return <div className="w-3 h-1 bg-pink-300 rounded-full mx-auto mt-1"></div>;
     }
   };
 
@@ -80,104 +152,150 @@ const AIRobot = ({
       case 'listening':
         return 'animate-pulse';
       case 'thinking':
-        return 'animate-bounce';
+        return 'animate-spin-slow';
       case 'celebrating':
-        return 'animate-ping';
+        return 'animate-bounce';
+      case 'typing':
+        return 'animate-bounce-gentle';
       default:
-        return 'animate-float-1';
+        return isIdle ? 'animate-float' : 'animate-bounce-gentle';
     }
   };
 
+  if (isMinimized) {
+    return (
+      <div className="fixed left-6 bottom-6 z-20">
+        <button
+          onClick={() => setIsMinimized(false)}
+          className="bg-gradient-to-br from-blue-400 to-purple-500 rounded-full p-3 shadow-2xl border-2 border-white/30 hover:scale-110 transition-all duration-300"
+        >
+          <Maximize2 className="w-4 h-4 text-white" />
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-20 flex flex-col items-center">
+    <div 
+      className="fixed left-6 top-1/2 transform -translate-y-1/2 z-20 flex flex-col items-center transition-all duration-1000"
+      style={{
+        transform: `translate(${position.x}px, ${position.y - 50}px)`
+      }}
+    >
       {/* Speech Bubble */}
       {showBubble && (
         <div className="mb-4 relative animate-fade-in">
-          <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl px-4 py-2 text-white text-sm font-medium max-w-48 text-center">
+          <div className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl px-3 py-2 text-white text-xs font-medium max-w-40 text-center">
             {speechBubble}
           </div>
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white/20"></div>
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-3 border-r-3 border-t-3 border-transparent border-t-white/20"></div>
         </div>
       )}
 
       {/* Robot Body */}
       <div className={cn(
-        "relative bg-gradient-to-br from-purple-400 to-blue-500 rounded-3xl p-6 shadow-2xl border-2 border-white/30 transition-all duration-300",
+        "relative bg-gradient-to-br from-blue-400 via-white to-blue-500 rounded-3xl p-4 shadow-2xl border-3 border-gray-800 transition-all duration-300",
         getRobotAnimation()
       )}>
         {/* Microphone indicator when listening */}
         {isListening && (
-          <div className="absolute -top-2 -right-2 bg-red-500 rounded-full p-2 animate-pulse">
-            <Mic className="w-4 h-4 text-white" />
+          <div className="absolute -top-2 -right-2 bg-red-500 rounded-full p-1.5 animate-pulse">
+            <Mic className="w-3 h-3 text-white" />
           </div>
         )}
 
         {/* Robot Head */}
-        <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mb-3 relative">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-3 mb-2 relative border border-gray-300">
+          {/* Blue visor/forehead */}
+          <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-8 h-3 bg-blue-500 rounded-t-xl border border-gray-800"></div>
+          
           {/* Eyes */}
-          <div className="text-2xl mb-2 text-center">
+          <div className="mb-2">
             {getRobotEyes()}
           </div>
           
           {/* Mouth */}
-          <div className="text-center">
-            {robotState === 'celebrating' ? '🎉' : robotState === 'error' ? '😬' : '😊'}
+          <div>
+            {getRobotMouth()}
           </div>
 
-          {/* Antenna */}
-          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-            <div className="w-1 h-6 bg-yellow-400 rounded-full relative">
-              <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
-            </div>
-          </div>
+          {/* Side details */}
+          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2 h-4 bg-blue-400 rounded-r-lg border border-gray-800"></div>
+          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-4 bg-blue-400 rounded-l-lg border border-gray-800"></div>
         </div>
 
         {/* Robot Body */}
-        <div className="bg-white/10 rounded-xl p-3">
-          <div className="flex justify-center gap-2 mb-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse animation-delay-200"></div>
-            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse animation-delay-400"></div>
+        <div className="bg-white/80 rounded-xl p-2 border border-gray-300">
+          {/* Chest circle */}
+          <div className="w-4 h-4 bg-blue-500 rounded-full mx-auto mb-2 border-2 border-gray-800">
+            <div className="w-2 h-2 bg-blue-300 rounded-full mx-auto mt-0.5"></div>
           </div>
           
           {/* Control Buttons */}
-          <div className="flex justify-center gap-2">
+          <div className="flex justify-center gap-1">
             <button
               onClick={onToggleSpeech}
-              className="p-1 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+              className="p-1 rounded-full bg-green-400/80 hover:bg-green-400 transition-colors border border-gray-600"
               title={isSpeechEnabled ? "Mute voice" : "Enable voice"}
             >
               {isSpeechEnabled ? (
-                <Volume2 className="w-3 h-3 text-white" />
+                <Volume2 className="w-2 h-2 text-white" />
               ) : (
-                <VolumeX className="w-3 h-3 text-white" />
+                <VolumeX className="w-2 h-2 text-white" />
               )}
             </button>
             
             <button
               onClick={onHelp}
-              className="p-1 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+              className="p-1 rounded-full bg-purple-400/80 hover:bg-purple-400 transition-colors border border-gray-600"
               title="Help"
             >
-              <HelpCircle className="w-3 h-3 text-white" />
+              <HelpCircle className="w-2 h-2 text-white" />
+            </button>
+
+            <button
+              onClick={() => setIsMinimized(true)}
+              className="p-1 rounded-full bg-gray-400/80 hover:bg-gray-400 transition-colors border border-gray-600"
+              title="Minimize"
+            >
+              <X className="w-2 h-2 text-white" />
             </button>
           </div>
         </div>
 
         {/* Robot Arms */}
-        <div className="absolute -left-4 top-1/2 transform -translate-y-1/2">
+        <div className="absolute -left-2 top-1/2 transform -translate-y-1/2">
           <div className={cn(
-            "w-8 h-2 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full",
+            "w-6 h-2 bg-white rounded-full border border-gray-800",
             robotState === 'celebrating' && "animate-bounce"
-          )}></div>
+          )}>
+            <div className="w-2 h-2 bg-blue-400 rounded-full ml-4 border border-gray-600"></div>
+          </div>
         </div>
-        <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
+        <div className="absolute -right-2 top-1/2 transform -translate-y-1/2">
           <div className={cn(
-            "w-8 h-2 bg-gradient-to-l from-purple-400 to-blue-500 rounded-full",
+            "w-6 h-2 bg-white rounded-full border border-gray-800",
             robotState === 'celebrating' && "animate-bounce animation-delay-200"
-          )}></div>
+          )}>
+            <div className="w-2 h-2 bg-blue-400 rounded-full border border-gray-600"></div>
+          </div>
+        </div>
+
+        {/* Robot Legs */}
+        <div className="absolute -bottom-1 left-1/4 transform -translate-x-1/2">
+          <div className="w-2 h-3 bg-white rounded-b-lg border border-gray-800">
+            <div className="w-3 h-1 bg-gray-600 rounded-full mt-2 -ml-0.5"></div>
+          </div>
+        </div>
+        <div className="absolute -bottom-1 right-1/4 transform translate-x-1/2">
+          <div className="w-2 h-3 bg-white rounded-b-lg border border-gray-800">
+            <div className="w-3 h-1 bg-gray-600 rounded-full mt-2 -ml-0.5"></div>
+          </div>
         </div>
       </div>
+
+      {/* Shadow */}
+      <div className="w-12 h-2 bg-black/20 rounded-full mt-1 blur-sm"></div>
     </div>
   );
 };

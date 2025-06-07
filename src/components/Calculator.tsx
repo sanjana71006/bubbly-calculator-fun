@@ -27,6 +27,10 @@ const Calculator = () => {
   const [isCalculating, setIsCalculating] = useState(false);
   const [isSpeechEnabled, setIsSpeechEnabled] = useState(true);
   const [showHelp, setShowHelp] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isIdle, setIsIdle] = useState(false);
+  const [idleTimer, setIdleTimer] = useState<NodeJS.Timeout | null>(null);
+  const [isVoiceListening, setIsVoiceListening] = useState(false);
 
   const addToHistory = (expression: string, result: string) => {
     const numResult = parseFloat(result);
@@ -57,6 +61,7 @@ const Calculator = () => {
   };
 
   const inputNumber = (num: string) => {
+    trackActivity();
     setError(null);
     if (waitingForOperand) {
       setDisplay(num);
@@ -67,6 +72,7 @@ const Calculator = () => {
   };
 
   const inputOperator = (nextOperator: string) => {
+    trackActivity();
     setError(null);
     const inputValue = parseFloat(display);
 
@@ -95,6 +101,7 @@ const Calculator = () => {
   };
 
   const calculate = () => {
+    trackActivity();
     setError(null);
     const inputValue = parseFloat(display);
 
@@ -117,6 +124,7 @@ const Calculator = () => {
   };
 
   const clear = () => {
+    trackActivity();
     setDisplay('0');
     setPreviousValue(null);
     setOperator(null);
@@ -168,17 +176,49 @@ const Calculator = () => {
     }
   };
 
+  const handleVoiceListeningChange = (listening: boolean) => {
+    setIsVoiceListening(listening);
+    if (listening) {
+      setIsTyping(false);
+      setIsIdle(false);
+      if (idleTimer) {
+        clearTimeout(idleTimer);
+      }
+    }
+  };
+
+  const trackActivity = () => {
+    setIsTyping(true);
+    setIsIdle(false);
+    
+    if (idleTimer) {
+      clearTimeout(idleTimer);
+    }
+    
+    const timer = setTimeout(() => {
+      setIsTyping(false);
+      setIsIdle(true);
+      
+      // Reset idle state after showing message
+      setTimeout(() => setIsIdle(false), 3000);
+    }, 2000);
+    
+    setIdleTimer(timer);
+  };
+
   return (
     <div className="flex gap-6 w-full max-w-6xl relative">
       {/* AI Robot Assistant */}
       <AIRobot
-        isListening={false} // Will be connected to VoiceInput state
+        isListening={isVoiceListening}
         isCalculating={isCalculating}
         lastResult={history[0]?.result}
         isSpecialResult={history[0]?.isSpecial}
         isSpeechEnabled={isSpeechEnabled}
         onToggleSpeech={toggleSpeech}
         onHelp={showHelpDialog}
+        isTyping={isTyping}
+        isIdle={isIdle}
       />
 
       {/* Help Modal */}
@@ -187,16 +227,20 @@ const Calculator = () => {
           <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-8 max-w-md mx-4 border border-white/30">
             <h3 className="text-xl font-bold text-white mb-4 text-center">🤖 Voice Calculator Help</h3>
             <div className="text-white/90 space-y-2 text-sm">
+              <p><strong>🤖 Meet your Calculator Robot Companion!</strong></p>
+              <p>Your friendly assistant will watch over your calculations, think along with you, and cheer when you find results!</p>
+              <br />
               <p><strong>Voice Commands:</strong></p>
               <p>• "What is 12 times 5?"</p>
               <p>• "Calculate 456 plus 123"</p>
               <p>• "25 divided by 5"</p>
               <p>• "100 minus 30"</p>
               <br />
-              <p><strong>Button Controls:</strong></p>
-              <p>• Use number pad for manual input</p>
-              <p>• Click operators (+, -, ×, ÷)</p>
-              <p>• Press = to calculate</p>
+              <p><strong>Robot Behaviors:</strong></p>
+              <p>• Bounces gently when you type</p>
+              <p>• Thinks and rotates during calculations</p>
+              <p>• Celebrates your results!</p>
+              <p>• Wanders around when idle</p>
             </div>
             <button 
               onClick={() => setShowHelp(false)}
@@ -238,7 +282,11 @@ const Calculator = () => {
           </div>
         )}
         
-        <VoiceInput onResult={handleVoiceInput} onError={handleVoiceError} />
+        <VoiceInput 
+          onResult={handleVoiceInput} 
+          onError={handleVoiceError} 
+          onListeningChange={handleVoiceListeningChange}
+        />
 
         <div className="grid grid-cols-4 gap-3 mt-6">
           <CalculatorButton onClick={clear} className="col-span-2 bg-red-500/80 hover:bg-red-500">
