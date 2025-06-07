@@ -8,9 +8,10 @@ import { cn } from '@/lib/utils';
 interface VoiceInputProps {
   onResult: (expression: string) => void;
   onError: (message: string) => void;
+  onListeningChange?: (isListening: boolean) => void;
 }
 
-const VoiceInput = ({ onResult, onError }: VoiceInputProps) => {
+const VoiceInput = ({ onResult, onError, onListeningChange }: VoiceInputProps) => {
   const [isListening, setIsListening] = useState(false);
   const [isSpeechEnabled, setIsSpeechEnabled] = useState(true);
 
@@ -25,6 +26,7 @@ const VoiceInput = ({ onResult, onError }: VoiceInputProps) => {
 
       recognition.onstart = () => {
         setIsListening(true);
+        onListeningChange?.(true);
       };
 
       recognition.onresult = (event) => {
@@ -41,16 +43,19 @@ const VoiceInput = ({ onResult, onError }: VoiceInputProps) => {
         }
         
         setIsListening(false);
+        onListeningChange?.(false);
       };
 
       recognition.onerror = (event) => {
         console.error('Speech recognition error:', event.error);
         onError('🎤 Voice recognition error. Please try again!');
         setIsListening(false);
+        onListeningChange?.(false);
       };
 
       recognition.onend = () => {
         setIsListening(false);
+        onListeningChange?.(false);
       };
 
       recognition.start();

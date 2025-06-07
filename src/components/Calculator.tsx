@@ -1,9 +1,9 @@
-
 import { useState, useEffect } from 'react';
 import CalculatorDisplay from './CalculatorDisplay';
 import CalculatorButton from './CalculatorButton';
 import VoiceInput from './VoiceInput';
 import CalculationHistory from './CalculationHistory';
+import AIRobot from './AIRobot';
 import { calculateResult } from '@/utils/calculatorEngine';
 import { ttsService } from '@/utils/textToSpeech';
 import { checkSpecialResult, getSpecialResultMessage } from '@/utils/specialResults';
@@ -24,6 +24,9 @@ const Calculator = () => {
   const [history, setHistory] = useState<CalculationEntry[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isCalculating, setIsCalculating] = useState(false);
+  const [isSpeechEnabled, setIsSpeechEnabled] = useState(true);
+  const [showHelp, setShowHelp] = useState(false);
 
   const addToHistory = (expression: string, result: string) => {
     const numResult = parseFloat(result);
@@ -123,16 +126,23 @@ const Calculator = () => {
 
   const handleVoiceInput = (expression: string) => {
     setError(null);
-    try {
-      // Simple evaluation for voice input
-      const result = eval(expression.replace(/[^0-9+\-*/().]/g, ''));
-      setDisplay(String(result));
-      addToHistory(expression, String(result));
-      setWaitingForOperand(true);
-    } catch (error) {
-      setError('Invalid voice expression');
-      setDisplay('Error');
-    }
+    setIsCalculating(true);
+    
+    // Simulate calculation delay for robot animation
+    setTimeout(() => {
+      try {
+        // Simple evaluation for voice input
+        const result = eval(expression.replace(/[^0-9+\-*/().]/g, ''));
+        setDisplay(String(result));
+        addToHistory(expression, String(result));
+        setWaitingForOperand(true);
+      } catch (error) {
+        setError('Invalid voice expression');
+        setDisplay('Error');
+      } finally {
+        setIsCalculating(false);
+      }
+    }, 1000);
   };
 
   const handleVoiceError = (message: string) => {
@@ -144,10 +154,62 @@ const Calculator = () => {
     setHistory([]);
   };
 
+  const toggleSpeech = () => {
+    setIsSpeechEnabled(!isSpeechEnabled);
+    if (!isSpeechEnabled) {
+      ttsService.speak("Voice output enabled");
+    }
+  };
+
+  const showHelpDialog = () => {
+    setShowHelp(true);
+    if (isSpeechEnabled) {
+      ttsService.speak("Try saying: What is 12 times 5? Or: Calculate 456 plus 123");
+    }
+  };
+
   return (
-    <div className="flex gap-6 w-full max-w-6xl">
+    <div className="flex gap-6 w-full max-w-6xl relative">
+      {/* AI Robot Assistant */}
+      <AIRobot
+        isListening={false} // Will be connected to VoiceInput state
+        isCalculating={isCalculating}
+        lastResult={history[0]?.result}
+        isSpecialResult={history[0]?.isSpecial}
+        isSpeechEnabled={isSpeechEnabled}
+        onToggleSpeech={toggleSpeech}
+        onHelp={showHelpDialog}
+      />
+
+      {/* Help Modal */}
+      {showHelp && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onClick={() => setShowHelp(false)}>
+          <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-8 max-w-md mx-4 border border-white/30">
+            <h3 className="text-xl font-bold text-white mb-4 text-center">🤖 Voice Calculator Help</h3>
+            <div className="text-white/90 space-y-2 text-sm">
+              <p><strong>Voice Commands:</strong></p>
+              <p>• "What is 12 times 5?"</p>
+              <p>• "Calculate 456 plus 123"</p>
+              <p>• "25 divided by 5"</p>
+              <p>• "100 minus 30"</p>
+              <br />
+              <p><strong>Button Controls:</strong></p>
+              <p>• Use number pad for manual input</p>
+              <p>• Click operators (+, -, ×, ÷)</p>
+              <p>• Press = to calculate</p>
+            </div>
+            <button 
+              onClick={() => setShowHelp(false)}
+              className="w-full mt-4 bg-purple-500/80 hover:bg-purple-500 text-white py-2 rounded-lg transition-colors"
+            >
+              Got it! 👍
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Calculator */}
-      <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 max-w-md w-full hover:bg-white/15 transition-all duration-300 relative">
+      <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 max-w-md w-full hover:bg-white/15 transition-all duration-300 relative ml-32">
         {showConfetti && (
           <div className="absolute inset-0 pointer-events-none">
             <div className="animate-bounce text-4xl absolute top-4 left-4">🎉</div>
