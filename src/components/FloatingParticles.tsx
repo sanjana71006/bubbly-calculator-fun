@@ -7,7 +7,7 @@ const FloatingParticles = () => {
       {particles.map((particle, index) => (
         <div
           key={index}
-          className="absolute text-2xl opacity-20 animate-float-gentle animate-fade-in-slow"
+          className="absolute text-2xl floating-emoji animate-float-gentle animate-fade-in-slow"
           style={{
             left: `${Math.random() * 90}%`,
             top: `${Math.random() * 90}%`,
@@ -23,7 +23,7 @@ const FloatingParticles = () => {
       {particles.slice(0, 4).map((particle, index) => (
         <div
           key={`extra-${index}`}
-          className="absolute text-xl opacity-15 animate-float-gentle"
+          className="absolute text-xl floating-emoji animate-float-gentle"
           style={{
             left: `${Math.random() * 90}%`,
             top: `${Math.random() * 90}%`,

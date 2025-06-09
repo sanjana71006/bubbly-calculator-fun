@@ -14,7 +14,7 @@ const CalculatorButton = ({ onClick, children, className, variant = 'default' }:
       case 'operator':
         return 'calc-operator text-white font-bold';
       case 'clear':
-        return 'bg-destructive hover:bg-destructive/90 text-destructive-foreground font-bold';
+        return 'bg-destructive hover:bg-destructive/90 text-destructive-foreground font-bold border-2 border-destructive';
       default:
         return 'calc-button text-foreground';
     }
@@ -24,8 +24,9 @@ const CalculatorButton = ({ onClick, children, className, variant = 'default' }:
     <button
       onClick={onClick}
       className={cn(
-        "h-14 rounded-lg text-xl font-semibold transition-all duration-200",
-        "shadow-sm hover:shadow-md active:scale-95",
+        "h-16 rounded-xl text-xl font-semibold transition-all duration-200",
+        "shadow-sm hover:shadow-lg active:scale-95",
+        "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
         getVariantStyles(),
         className
       )}
