@@ -20,7 +20,7 @@ const FloatingParticles = () => {
       setTimeout(() => {
         setActiveParticles(prev => prev.filter(p => p.id !== newParticle.id));
       }, 8000);
-    }, 3000); // Reduced frequency for subtlety
+    }, 4000); // Reduced frequency for subtlety
 
     return () => clearInterval(interval);
   }, []);
