@@ -5,16 +5,29 @@ interface CalculatorButtonProps {
   onClick: () => void;
   children: React.ReactNode;
   className?: string;
+  variant?: 'default' | 'operator' | 'clear';
 }
 
-const CalculatorButton = ({ onClick, children, className }: CalculatorButtonProps) => {
+const CalculatorButton = ({ onClick, children, className, variant = 'default' }: CalculatorButtonProps) => {
+  const getVariantStyles = () => {
+    switch (variant) {
+      case 'operator':
+        return 'calc-operator text-white font-bold';
+      case 'clear':
+        return 'bg-destructive hover:bg-destructive/90 text-destructive-foreground font-bold border-2 border-destructive';
+      default:
+        return 'calc-button text-foreground';
+    }
+  };
+
   return (
     <button
       onClick={onClick}
       className={cn(
-        "h-14 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-white font-semibold text-xl",
-        "hover:bg-white/30 hover:scale-105 active:scale-95 transition-all duration-200",
-        "shadow-lg hover:shadow-xl",
+        "h-16 rounded-xl text-xl font-semibold transition-all duration-200",
+        "shadow-sm hover:shadow-lg active:scale-95",
+        "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+        getVariantStyles(),
         className
       )}
     >
