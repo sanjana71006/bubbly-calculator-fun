@@ -1,37 +1,43 @@
 
+import { useEffect, useState } from 'react';
+
 const FloatingParticles = () => {
   const particles = ['🧮', '➕', '➗', '➖', '✖️', '📐', '💡', '📊'];
-  
-  return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      {particles.map((particle, index) => (
-        <div
-          key={index}
-          className="absolute text-2xl floating-emoji animate-float-gentle animate-fade-in-slow"
-          style={{
-            left: `${Math.random() * 90}%`,
-            top: `${Math.random() * 90}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${4 + Math.random() * 3}s`,
-          }}
-        >
-          {particle}
-        </div>
-      ))}
+  const [activeParticles, setActiveParticles] = useState<Array<{id: number, emoji: string, left: number, delay: number}>>([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newParticle = {
+        id: Date.now(),
+        emoji: particles[Math.floor(Math.random() * particles.length)],
+        left: Math.random() * 90,
+        delay: Math.random() * 2
+      };
       
-      {/* Additional layer for more variety */}
-      {particles.slice(0, 4).map((particle, index) => (
+      setActiveParticles(prev => [...prev, newParticle]);
+      
+      // Remove particle after animation completes
+      setTimeout(() => {
+        setActiveParticles(prev => prev.filter(p => p.id !== newParticle.id));
+      }, 8000);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {activeParticles.map((particle) => (
         <div
-          key={`extra-${index}`}
-          className="absolute text-xl floating-emoji animate-float-gentle"
+          key={particle.id}
+          className="absolute floating-emoji animate-float-up"
           style={{
-            left: `${Math.random() * 90}%`,
-            top: `${Math.random() * 90}%`,
-            animationDelay: `${2 + Math.random() * 4}s`,
-            animationDuration: `${6 + Math.random() * 2}s`,
+            left: `${particle.left}%`,
+            bottom: '-50px',
+            animationDelay: `${particle.delay}s`,
           }}
         >
-          {particle}
+          {particle.emoji}
         </div>
       ))}
     </div>

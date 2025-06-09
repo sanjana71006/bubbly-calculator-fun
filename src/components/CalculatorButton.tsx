@@ -14,7 +14,7 @@ const CalculatorButton = ({ onClick, children, className, variant = 'default' }:
       case 'operator':
         return 'calc-operator text-white font-bold';
       case 'clear':
-        return 'bg-destructive hover:bg-destructive/90 text-destructive-foreground font-bold border-2 border-destructive';
+        return 'bg-destructive hover:bg-destructive/90 text-destructive-foreground font-bold border border-destructive';
       default:
         return 'calc-button text-foreground';
     }

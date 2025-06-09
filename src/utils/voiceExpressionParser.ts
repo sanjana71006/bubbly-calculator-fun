@@ -25,11 +25,11 @@ export const parseVoiceExpression = (transcript: string): string => {
     expression = expression.replace(regex, numberWords[word]);
   });
 
-  // Convert operations to symbols
+  // Convert operations to symbols - FIX MULTIPLICATION BUG
   expression = expression
     .replace(/\bplus\b|\badd\b|\band\b/gi, '+')
     .replace(/\bminus\b|\bsubtract\b|\btake away\b/gi, '-')
-    .replace(/\btimes\b|\bmultiplied by\b|\bmultiply\b/gi, '*')
+    .replace(/\btimes\b|\bmultiplied by\b|\bmultiply\b|\bx\b/gi, '*')  // Fixed multiplication
     .replace(/\bdivided by\b|\bdivide\b|\bover\b/gi, '/')
     .replace(/\bto the power of\b|\bpower\b|\braised to\b/gi, '^')
     .replace(/\bsquared\b/gi, '^2')
@@ -41,6 +41,7 @@ export const parseVoiceExpression = (transcript: string): string => {
   // Remove spaces around operators for cleaner expression
   expression = expression.replace(/\s*([+\-*/^])\s*/g, '$1');
 
+  console.log('Voice parsing:', transcript, '->', expression);
   return expression;
 };
 

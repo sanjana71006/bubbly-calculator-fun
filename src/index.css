@@ -3,103 +3,87 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Professional design system with high contrast for accessibility */
+/* ChatGPT-like design system with high contrast for accessibility */
 
 @layer base {
   :root {
-    /* Light mode - Professional white + pastels */
-    --background: 255 255 255; /* Pure white #ffffff */
-    --foreground: 34 34 34; /* Dark charcoal #222222 */
+    /* Light mode - ChatGPT style */
+    --background: 247 247 248; /* #f7f7f8 */
+    --foreground: 31 31 31; /* #1f1f1f */
 
     --card: 255 255 255; /* Pure white */
-    --card-foreground: 34 34 34; /* Dark charcoal */
+    --card-foreground: 31 31 31;
 
     --popover: 255 255 255;
-    --popover-foreground: 34 34 34;
+    --popover-foreground: 31 31 31;
 
-    --primary: 242 242 247; /* Pastel #f2f2f7 */
-    --primary-foreground: 34 34 34;
+    --primary: 227 227 231; /* #e3e3e7 */
+    --primary-foreground: 31 31 31;
 
-    --secondary: 233 240 247; /* Pastel #e9f0f7 */
-    --secondary-foreground: 34 34 34;
+    --secondary: 208 215 226; /* #d0d7e2 */
+    --secondary-foreground: 31 31 31;
 
-    --muted: 247 233 240; /* Pastel #f7e9f0 */
-    --muted-foreground: 34 34 34;
+    --muted: 243 243 243; /* #f3f3f3 */
+    --muted-foreground: 107 114 126; /* #6b727e */
 
-    --accent: 233 240 247; /* Light blue pastel */
-    --accent-foreground: 34 34 34;
+    --accent: 227 227 231;
+    --accent-foreground: 31 31 31;
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 233 240 247;
-    --input: 242 242 247;
+    --border: 229 229 229; /* #e5e5e5 */
+    --input: 255 255 255;
     --ring: 59 130 246;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 255 255 255;
-    --sidebar-foreground: 34 34 34;
-    --sidebar-primary: 34 34 34;
-    --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 242 242 247;
-    --sidebar-accent-foreground: 34 34 34;
-    --sidebar-border: 233 240 247;
-    --sidebar-ring: 59 130 246;
-
     /* Calculator specific colors - Light mode */
-    --calc-display: 224 247 250; /* Light blue #e0f7fa */
-    --calc-button: 242 242 247; /* Pastel grey #f2f2f7 */
-    --calc-button-hover: 233 240 247;
-    --calc-operator: 59 130 246; /* Professional blue */
-    --calc-operator-hover: 37 99 235;
+    --calc-display: 255 255 255; /* Pure white display */
+    --calc-button: 227 227 231; /* Light grey buttons */
+    --calc-button-hover: 208 215 226;
+    --calc-operator: 99 102 241; /* Professional blue */
+    --calc-operator-hover: 79 70 229;
+    --emoji-opacity: 0.08;
   }
 
   .dark {
-    /* Dark mode - Deep black + high contrast */
-    --background: 0 0 0; /* Deep black #000000 */
-    --foreground: 255 255 255; /* Bright white #ffffff */
+    /* Dark mode - ChatGPT style */
+    --background: 30 30 31; /* #1e1e1f */
+    --foreground: 245 245 245; /* #f5f5f5 */
 
-    --card: 34 34 34;
-    --card-foreground: 255 255 255;
+    --card: 42 42 43; /* #2a2a2b */
+    --card-foreground: 245 245 245;
 
-    --popover: 34 34 34;
-    --popover-foreground: 255 255 255;
+    --popover: 42 42 43;
+    --popover-foreground: 245 245 245;
 
-    --primary: 255 255 255;
-    --primary-foreground: 0 0 0;
+    --primary: 245 245 245;
+    --primary-foreground: 30 30 31;
 
-    --secondary: 51 51 51; /* Muted dark #333333 */
-    --secondary-foreground: 255 255 255;
+    --secondary: 51 54 58; /* #33363a */
+    --secondary-foreground: 245 245 245;
 
-    --muted: 34 34 34; /* Dark #222222 */
-    --muted-foreground: 255 255 255;
+    --muted: 42 42 43;
+    --muted-foreground: 163 163 163; /* #a3a3a3 */
 
-    --accent: 51 51 51;
-    --accent-foreground: 255 255 255;
+    --accent: 51 54 58;
+    --accent-foreground: 245 245 245;
 
     --destructive: 220 38 38;
     --destructive-foreground: 255 255 255;
 
-    --border: 51 51 51;
-    --input: 34 34 34;
+    --border: 63 79 95; /* #3f4f5f */
+    --input: 42 42 43;
     --ring: 147 197 253;
 
-    --sidebar-background: 0 0 0;
-    --sidebar-foreground: 255 255 255;
-    --sidebar-primary: 59 130 246;
-    --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 34 34 34;
-    --sidebar-accent-foreground: 255 255 255;
-    --sidebar-border: 51 51 51;
-    --sidebar-ring: 147 197 253;
-
     /* Calculator specific colors - Dark mode */
-    --calc-display: 34 34 34; /* Dark with glow */
-    --calc-button: 34 34 34; /* Dark #222222 */
-    --calc-button-hover: 51 51 51;
-    --calc-operator: 59 130 246; /* Bright blue */
-    --calc-operator-hover: 37 99 235;
+    --calc-display: 42 42 43; /* Dark display */
+    --calc-button: 51 54 58; /* Dark buttons */
+    --calc-button-hover: 75 85 99;
+    --calc-operator: 6 182 212; /* Cyan operator */
+    --calc-operator-hover: 14 165 233;
+    --emoji-opacity: 0.12;
   }
 }
 
@@ -154,6 +138,10 @@
   .animate-fade-in-slow {
     animation: fade-in-slow 3s ease-in-out infinite;
   }
+
+  .animate-float-up {
+    animation: float-up 8s linear infinite;
+  }
 }
 
 @keyframes bounce-gentle {
@@ -194,10 +182,27 @@
 
 @keyframes fade-in-slow {
   0%, 100% {
-    opacity: 0.1;
+    opacity: var(--emoji-opacity);
   }
   50% {
-    opacity: 0.2;
+    opacity: calc(var(--emoji-opacity) * 2);
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--emoji-opacity);
+  }
+  90% {
+    opacity: var(--emoji-opacity);
+  }
+  100% {
+    transform: translateY(-20vh) translateX(30px) rotate(360deg);
+    opacity: 0;
   }
 }
 
@@ -206,19 +211,19 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: 1px solid hsl(var(--border));
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .dark .glass-professional {
-  background: rgba(34, 34, 34, 0.95);
+  background: rgba(42, 42, 43, 0.95);
   border: 1px solid hsl(var(--border));
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Professional button styles with high contrast */
 .calc-button {
   background: hsl(var(--calc-button));
-  border: 2px solid hsl(var(--border));
+  border: 1px solid hsl(var(--border));
   color: hsl(var(--foreground));
   font-weight: 600;
   font-size: 1.25rem;
@@ -228,43 +233,44 @@
 .calc-button:hover {
   background: hsl(var(--calc-button-hover));
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-color: hsl(var(--calc-operator));
 }
 
 .dark .calc-button:hover {
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
 }
 
 .calc-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .calc-operator {
   background: hsl(var(--calc-operator));
   color: white;
   font-weight: 700;
-  border: 2px solid hsl(var(--calc-operator));
+  border: 1px solid hsl(var(--calc-operator));
 }
 
 .calc-operator:hover {
   background: hsl(var(--calc-operator-hover));
   border-color: hsl(var(--calc-operator-hover));
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.3);
 }
 
 .calc-display {
   background: hsl(var(--calc-display));
-  border: 2px solid hsl(var(--border));
+  border: 1px solid hsl(var(--border));
   color: hsl(var(--foreground));
   font-weight: 700;
   font-size: 2.5rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .dark .calc-display {
-  border-color: hsl(var(--calc-operator));
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  border-color: hsl(var(--border));
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* High contrast text for accessibility */
@@ -278,12 +284,37 @@
   font-weight: 500;
 }
 
-/* Floating emojis with proper opacity for both modes */
+/* Robot styles with proper contrast */
+.robot-eye {
+  background: hsl(var(--foreground));
+}
+
+.dark .robot-eye {
+  background: rgb(6, 182, 212);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+}
+
+.robot-body {
+  background: linear-gradient(135deg, rgb(227, 240, 247), rgb(233, 247, 255));
+  border: 2px solid hsl(var(--border));
+}
+
+.dark .robot-body {
+  background: linear-gradient(135deg, rgb(51, 54, 58), rgb(42, 42, 43));
+  border: 2px solid hsl(var(--border));
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+}
+
+/* Floating emojis with proper opacity */
 .floating-emoji {
-  opacity: 0.15;
+  opacity: var(--emoji-opacity);
+  font-size: 2rem;
+  pointer-events: none;
+  position: fixed;
+  z-index: 1;
 }
 
 .dark .floating-emoji {
-  opacity: 0.1;
-  filter: brightness(1.2);
+  filter: brightness(1.3);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
 }
