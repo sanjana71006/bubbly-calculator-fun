@@ -207,7 +207,7 @@ const Calculator = () => {
   };
 
   return (
-    <div className="flex gap-6 w-full max-w-6xl relative mt-20">
+    <div className="flex gap-6 w-full max-w-6xl relative">
       {/* AI Robot Assistant */}
       <AIRobot
         isListening={isVoiceListening}
@@ -224,9 +224,9 @@ const Calculator = () => {
       {/* Help Modal */}
       {showHelp && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onClick={() => setShowHelp(false)}>
-          <div className="glass-professional rounded-3xl p-8 max-w-md mx-4">
-            <h3 className="text-xl font-bold text-foreground mb-4 text-center">🤖 Smart Calculator Help</h3>
-            <div className="text-muted-foreground space-y-2 text-sm">
+          <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-8 max-w-md mx-4 border border-white/30">
+            <h3 className="text-xl font-bold text-white mb-4 text-center">🤖 Voice Calculator Help</h3>
+            <div className="text-white/90 space-y-2 text-sm">
               <p><strong>🤖 Meet your Calculator Robot Companion!</strong></p>
               <p>Your friendly assistant will watch over your calculations, think along with you, and cheer when you find results!</p>
               <br />
@@ -244,7 +244,7 @@ const Calculator = () => {
             </div>
             <button 
               onClick={() => setShowHelp(false)}
-              className="w-full mt-4 calc-operator text-white py-2 rounded-lg transition-colors"
+              className="w-full mt-4 bg-purple-500/80 hover:bg-purple-500 text-white py-2 rounded-lg transition-colors"
             >
               Got it! 👍
             </button>
@@ -253,7 +253,7 @@ const Calculator = () => {
       )}
 
       {/* Calculator */}
-      <div className="glass-professional rounded-3xl p-8 shadow-xl max-w-md w-full hover:shadow-2xl transition-all duration-300 relative ml-32">
+      <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 max-w-md w-full hover:bg-white/15 transition-all duration-300 relative ml-32">
         {showConfetti && (
           <div className="absolute inset-0 pointer-events-none">
             <div className="animate-bounce text-4xl absolute top-4 left-4">🎉</div>
@@ -264,8 +264,8 @@ const Calculator = () => {
         )}
 
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-foreground mb-2 flex items-center justify-center gap-2">
-            🧮 Smart Calculator
+          <h1 className="text-3xl font-bold text-white mb-2 flex items-center justify-center gap-2">
+            🧮 Voice Calc
           </h1>
           <div className="flex justify-center gap-2 text-2xl">
             <span>🧠</span>
@@ -277,7 +277,7 @@ const Calculator = () => {
         <CalculatorDisplay value={display} />
         
         {error && (
-          <div className="mb-4 p-3 bg-destructive/20 border border-destructive/50 rounded-lg text-destructive text-center animate-fade-in">
+          <div className="mb-4 p-3 bg-red-500/20 border border-red-300/50 rounded-lg text-red-200 text-center animate-fade-in">
             {error}
           </div>
         )}
@@ -289,34 +289,34 @@ const Calculator = () => {
         />
 
         <div className="grid grid-cols-4 gap-3 mt-6">
-          <CalculatorButton onClick={clear} className="col-span-2" variant="clear">
+          <CalculatorButton onClick={clear} className="col-span-2 bg-red-500/80 hover:bg-red-500">
             Clear
           </CalculatorButton>
-          <CalculatorButton onClick={() => inputOperator('/')} variant="operator">
+          <CalculatorButton onClick={() => inputOperator('/')} className="bg-orange-500/80 hover:bg-orange-500">
             ÷
           </CalculatorButton>
-          <CalculatorButton onClick={() => inputOperator('*')} variant="operator">
+          <CalculatorButton onClick={() => inputOperator('*')} className="bg-orange-500/80 hover:bg-orange-500">
             ×
           </CalculatorButton>
 
           <CalculatorButton onClick={() => inputNumber('7')}>7</CalculatorButton>
           <CalculatorButton onClick={() => inputNumber('8')}>8</CalculatorButton>
           <CalculatorButton onClick={() => inputNumber('9')}>9</CalculatorButton>
-          <CalculatorButton onClick={() => inputOperator('-')} variant="operator">
+          <CalculatorButton onClick={() => inputOperator('-')} className="bg-orange-500/80 hover:bg-orange-500">
             −
           </CalculatorButton>
 
           <CalculatorButton onClick={() => inputNumber('4')}>4</CalculatorButton>
           <CalculatorButton onClick={() => inputNumber('5')}>5</CalculatorButton>
           <CalculatorButton onClick={() => inputNumber('6')}>6</CalculatorButton>
-          <CalculatorButton onClick={() => inputOperator('+')} variant="operator">
+          <CalculatorButton onClick={() => inputOperator('+')} className="bg-orange-500/80 hover:bg-orange-500">
             +
           </CalculatorButton>
 
           <CalculatorButton onClick={() => inputNumber('1')}>1</CalculatorButton>
           <CalculatorButton onClick={() => inputNumber('2')}>2</CalculatorButton>
           <CalculatorButton onClick={() => inputNumber('3')}>3</CalculatorButton>
-          <CalculatorButton onClick={calculate} className="row-span-2" variant="operator">
+          <CalculatorButton onClick={calculate} className="row-span-2 bg-green-500/80 hover:bg-green-500">
             =
           </CalculatorButton>
 
