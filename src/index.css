@@ -1,62 +1,61 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Modern, playful, soft color palette */
+/* Modern, playful, soft color palette with pink theme */
 
 @layer base {
   :root {
-    /* Light mode - Modern lovable design */
+    /* Light mode - Modern lovable design with pink theme */
     --background: 250 250 250; /* #FAFAFA */
     --foreground: 51 51 51; /* #333333 */
 
-    --card: 167 199 231; /* #A7C7E7 - Calculator panel */
+    --card: 255 192 203; /* #FFC0CB - Light pink calculator panel */
     --card-foreground: 51 51 51;
 
     --popover: 255 255 255;
     --popover-foreground: 51 51 51;
 
-    --primary: 255 111 97; /* #FF6F61 - Operators */
+    --primary: 255 20 147; /* #FF1493 - Deep pink operators */
     --primary-foreground: 255 255 255;
 
-    --secondary: 220 228 236; /* #DCE4EC - Button hover */
+    --secondary: 255 228 225; /* #FFE4E1 - Button hover */
     --secondary-foreground: 51 51 51;
 
-    --muted: 197 184 247; /* #C5B8F7 - Alternative panel */
+    --muted: 255 182 193; /* #FFB6C1 - Light pink alternative */
     --muted-foreground: 51 51 51;
 
-    --accent: 255 154 139; /* #FF9A8B - Alternative operators */
+    --accent: 255 105 180; /* #FF69B4 - Hot pink accent */
     --accent-foreground: 255 255 255;
 
-    --destructive: 255 107 107; /* #FF6B6B - Clear button */
+    --destructive: 220 20 60; /* #DC143C - Crimson clear button */
     --destructive-foreground: 255 255 255;
 
-    --border: 220 228 236; /* Soft border */
+    --border: 255 228 225; /* Soft pink border */
     --input: 255 255 255;
-    --ring: 255 111 97;
+    --ring: 255 20 147;
 
     --radius: 0.75rem;
 
-    /* Calculator specific colors */
-    --calc-panel: 167 199 231; /* #A7C7E7 */
+    /* Calculator specific colors - Pink theme */
+    --calc-panel: 255 192 203; /* #FFC0CB */
     --calc-display: 255 255 255; /* #FFFFFF */
     --calc-display-alt: 255 248 220; /* #FFF8DC */
     --calc-button: 255 255 255; /* #FFFFFF */
-    --calc-button-hover: 220 228 236; /* #DCE4EC */
-    --calc-operator: 255 111 97; /* #FF6F61 */
-    --calc-operator-hover: 255 154 139; /* #FF9A8B */
-    --calc-clear: 255 107 107; /* #FF6B6B */
-    --calc-clear-hover: 255 87 87;
+    --calc-button-hover: 255 228 225; /* #FFE4E1 */
+    --calc-operator: 255 20 147; /* #FF1493 */
+    --calc-operator-hover: 255 105 180; /* #FF69B4 */
+    --calc-clear: 220 20 60; /* #DC143C */
+    --calc-clear-hover: 199 21 133; /* #C71585 */
     --emoji-opacity: 0.03;
     
-    /* Robot gradient colors */
-    --robot-start: 167 199 231; /* #A7C7E7 */
-    --robot-end: 255 154 139; /* #FF9A8B */
+    /* Robot gradient colors - Pink theme */
+    --robot-start: 255 192 203; /* #FFC0CB */
+    --robot-end: 255 105 180; /* #FF69B4 */
   }
 
   .dark {
-    /* Keep existing dark mode but softer */
+    /* Dark mode with pink accents */
     --background: 30 30 31; /* Softer dark */
     --foreground: 250 250 250;
 
@@ -66,7 +65,7 @@
     --popover: 45 45 47;
     --popover-foreground: 250 250 250;
 
-    --primary: 167 199 231; /* Light blue in dark */
+    --primary: 255 105 180; /* Hot pink in dark */
     --primary-foreground: 30 30 31;
 
     --secondary: 75 75 77;
@@ -75,31 +74,31 @@
     --muted: 75 75 77;
     --muted-foreground: 180 180 185;
 
-    --accent: 197 184 247; /* Purple accent */
+    --accent: 255 182 193; /* Light pink accent */
     --accent-foreground: 30 30 31;
 
-    --destructive: 255 107 107;
+    --destructive: 220 20 60;
     --destructive-foreground: 255 255 255;
 
     --border: 75 75 77;
     --input: 45 45 47;
-    --ring: 167 199 231;
+    --ring: 255 105 180;
 
-    /* Calculator specific colors - Dark mode */
+    /* Calculator specific colors - Dark mode with pink */
     --calc-panel: 45 45 47;
     --calc-display: 35 35 37;
     --calc-display-alt: 35 35 37;
     --calc-button: 60 60 62;
     --calc-button-hover: 80 80 82;
-    --calc-operator: 255 154 139;
-    --calc-operator-hover: 255 111 97;
-    --calc-clear: 255 107 107;
-    --calc-clear-hover: 255 87 87;
+    --calc-operator: 255 105 180;
+    --calc-operator-hover: 255 20 147;
+    --calc-clear: 220 20 60;
+    --calc-clear-hover: 199 21 133;
     --emoji-opacity: 0.04;
     
-    /* Robot gradient colors */
+    /* Robot gradient colors - Dark mode pink */
     --robot-start: 75 75 77;
-    --robot-end: 167 199 231;
+    --robot-end: 255 105 180;
   }
 }
 
@@ -226,8 +225,8 @@
 .glass-professional {
   background: rgb(var(--calc-panel));
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(167, 199, 231, 0.15);
+  border: 1px solid rgba(255, 192, 203, 0.2);
+  box-shadow: 0 8px 32px rgba(255, 192, 203, 0.15);
 }
 
 .dark .glass-professional {
@@ -250,7 +249,7 @@
 .calc-button:hover {
   background: rgb(var(--calc-button-hover));
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(167, 199, 231, 0.25);
+  box-shadow: 0 6px 20px rgba(255, 192, 203, 0.25);
   border-color: rgb(var(--calc-operator));
 }
 
@@ -265,14 +264,14 @@
   font-weight: 700;
   border: 1px solid rgb(var(--calc-operator));
   font-size: 1.25rem;
-  box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
 }
 
 .calc-operator:hover {
   background: rgb(var(--calc-operator-hover));
   border-color: rgb(var(--calc-operator-hover));
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 111, 97, 0.4);
+  box-shadow: 0 8px 24px rgba(255, 20, 147, 0.4);
 }
 
 .calc-clear {
@@ -281,14 +280,14 @@
   font-weight: 700;
   border: 1px solid rgb(var(--calc-clear));
   font-size: 1.25rem;
-  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.3);
 }
 
 .calc-clear:hover {
   background: rgb(var(--calc-clear-hover));
   border-color: rgb(var(--calc-clear-hover));
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 8px 24px rgba(220, 20, 60, 0.4);
 }
 
 .calc-display {
@@ -311,20 +310,20 @@
   font-weight: 500;
 }
 
-/* Modern robot styles with gradient */
+/* Modern robot styles with pink gradient */
 .robot-eye {
   background: rgb(var(--foreground));
 }
 
 .dark .robot-eye {
-  background: rgb(167, 199, 231);
-  box-shadow: 0 0 8px rgba(167, 199, 231, 0.6);
+  background: rgb(255, 105, 180);
+  box-shadow: 0 0 8px rgba(255, 105, 180, 0.6);
 }
 
 .robot-body {
   background: linear-gradient(135deg, rgb(var(--robot-start)), rgb(var(--robot-end)));
   border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 24px rgba(167, 199, 231, 0.2);
+  box-shadow: 0 8px 24px rgba(255, 192, 203, 0.2);
 }
 
 .dark .robot-body {
