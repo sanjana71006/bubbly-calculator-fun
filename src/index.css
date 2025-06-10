@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern, playful, soft color palette with pink theme */
+/* Modern, playful, soft color palette with pink theme and light blue background */
 
 @layer base {
   :root {
-    /* Light mode - Modern lovable design with pink theme */
-    --background: 250 250 250; /* #FAFAFA */
+    /* Light mode - Modern lovable design with pink theme and light blue background */
+    --background: 234 244 255; /* #EAF4FF - Light blue background */
     --foreground: 51 51 51; /* #333333 */
 
     --card: 255 192 203; /* #FFC0CB - Light pink calculator panel */
@@ -52,6 +52,12 @@
     /* Robot gradient colors - Pink theme */
     --robot-start: 255 192 203; /* #FFC0CB */
     --robot-end: 255 105 180; /* #FF69B4 */
+
+    /* History panel button colors for better visibility */
+    --history-button-bg: 255 255 255; /* White background */
+    --history-button-hover: 240 248 255; /* Light blue hover */
+    --history-download: 34 197 94; /* Green for download */
+    --history-delete: 239 68 68; /* Red for delete */
   }
 
   .dark {
@@ -99,6 +105,12 @@
     /* Robot gradient colors - Dark mode pink */
     --robot-start: 75 75 77;
     --robot-end: 255 105 180;
+
+    /* History panel button colors for dark mode */
+    --history-button-bg: 60 60 62;
+    --history-button-hover: 80 80 82;
+    --history-download: 34 197 94;
+    --history-delete: 239 68 68;
   }
 }
 
@@ -343,4 +355,61 @@
 
 .dark .floating-emoji {
   filter: brightness(1.1);
+}
+
+/* History panel button colors for better visibility */
+.history-button {
+  background: var(--history-button-bg);
+  color: var(--history-button-hover);
+  border: 1px solid var(--history-button-bg);
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-button:hover {
+  background: var(--history-button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 192, 203, 0.25);
+  border-color: var(--history-button-hover);
+}
+
+.history-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-download {
+  background: var(--history-download);
+  color: var(--history-button-hover);
+  border: 1px solid var(--history-download);
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-download:hover {
+  background: var(--history-button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 192, 203, 0.25);
+  border-color: var(--history-button-hover);
+}
+
+.history-delete {
+  background: var(--history-delete);
+  color: var(--history-button-hover);
+  border: 1px solid var(--history-delete);
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-delete:hover {
+  background: var(--history-button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 192, 203, 0.25);
+  border-color: var(--history-button-hover);
 }

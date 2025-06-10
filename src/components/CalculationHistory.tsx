@@ -50,10 +50,10 @@ const CalculationHistory = ({ entries, onClearHistory }: CalculationHistoryProps
             onClick={downloadHistory}
             disabled={entries.length === 0}
             className={cn(
-              "p-2 rounded-lg border border-white/30 backdrop-blur-sm transition-all duration-300",
+              "p-3 rounded-lg transition-all duration-300 font-semibold text-sm border-2",
               entries.length > 0
-                ? "bg-green-500/80 text-white hover:bg-green-500 hover:scale-105"
-                : "bg-gray-500/50 text-gray-300 cursor-not-allowed"
+                ? "bg-white text-green-600 border-green-200 hover:bg-green-50 hover:border-green-300 hover:scale-105 shadow-md"
+                : "bg-gray-300 text-gray-500 border-gray-200 cursor-not-allowed"
             )}
             title="Download history"
           >
@@ -63,10 +63,10 @@ const CalculationHistory = ({ entries, onClearHistory }: CalculationHistoryProps
             onClick={onClearHistory}
             disabled={entries.length === 0}
             className={cn(
-              "p-2 rounded-lg border border-white/30 backdrop-blur-sm transition-all duration-300",
+              "p-3 rounded-lg transition-all duration-300 font-semibold text-sm border-2",
               entries.length > 0
-                ? "bg-red-500/80 text-white hover:bg-red-500 hover:scale-105"
-                : "bg-gray-500/50 text-gray-300 cursor-not-allowed"
+                ? "bg-white text-red-600 border-red-200 hover:bg-red-50 hover:border-red-300 hover:scale-105 shadow-md"
+                : "bg-gray-300 text-gray-500 border-gray-200 cursor-not-allowed"
             )}
             title="Clear history"
           >
