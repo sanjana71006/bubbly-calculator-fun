@@ -3,87 +3,87 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ChatGPT-like design system with high contrast for accessibility */
+/* User-friendly design system with pink accents */
 
 @layer base {
   :root {
-    /* Light mode - ChatGPT style */
-    --background: 247 247 248; /* #f7f7f8 */
-    --foreground: 31 31 31; /* #1f1f1f */
+    /* Light mode - User-friendly with pink accents */
+    --background: 255 255 255; /* Pure white */
+    --foreground: 31 31 31; /* Dark text */
 
-    --card: 255 255 255; /* Pure white */
+    --card: 255 255 255; /* Pure white cards */
     --card-foreground: 31 31 31;
 
     --popover: 255 255 255;
     --popover-foreground: 31 31 31;
 
-    --primary: 227 227 231; /* #e3e3e7 */
-    --primary-foreground: 31 31 31;
+    --primary: 236 72 153; /* Pink primary */
+    --primary-foreground: 255 255 255;
 
-    --secondary: 208 215 226; /* #d0d7e2 */
+    --secondary: 249 168 212; /* Light pink secondary */
     --secondary-foreground: 31 31 31;
 
-    --muted: 243 243 243; /* #f3f3f3 */
-    --muted-foreground: 107 114 126; /* #6b727e */
+    --muted: 251 113 133; /* Pink muted */
+    --muted-foreground: 107 114 126;
 
-    --accent: 227 227 231;
-    --accent-foreground: 31 31 31;
+    --accent: 236 72 153; /* Pink accent */
+    --accent-foreground: 255 255 255;
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 229 229 229; /* #e5e5e5 */
+    --border: 249 168 212; /* Light pink borders */
     --input: 255 255 255;
-    --ring: 59 130 246;
+    --ring: 236 72 153;
 
     --radius: 0.5rem;
 
-    /* Calculator specific colors - Light mode */
-    --calc-display: 255 255 255; /* Pure white display */
-    --calc-button: 255 255 255; /* White number buttons */
-    --calc-button-hover: 243 244 246;
-    --calc-operator: 59 130 246; /* Professional blue */
-    --calc-operator-hover: 37 99 235;
-    --emoji-opacity: 0.06;
+    /* Calculator specific colors - Light mode with pink */
+    --calc-display: 255 255 255; /* White display */
+    --calc-button: 251 207 232; /* Light pink buttons */
+    --calc-button-hover: 249 168 212;
+    --calc-operator: 236 72 153; /* Pink operators */
+    --calc-operator-hover: 219 39 119;
+    --emoji-opacity: 0.04;
   }
 
   .dark {
-    /* Dark mode - ChatGPT style */
-    --background: 30 30 31; /* #1e1e1f */
-    --foreground: 245 245 245; /* #f5f5f5 */
+    /* Dark mode - Purple/blue theme like reference */
+    --background: 67 56 202; /* Purple background */
+    --foreground: 255 255 255;
 
-    --card: 42 42 43; /* #2a2a2b */
-    --card-foreground: 245 245 245;
+    --card: 88 80 236; /* Purple cards */
+    --card-foreground: 255 255 255;
 
-    --popover: 42 42 43;
-    --popover-foreground: 245 245 245;
+    --popover: 88 80 236;
+    --popover-foreground: 255 255 255;
 
-    --primary: 245 245 245;
-    --primary-foreground: 30 30 31;
+    --primary: 129 140 248; /* Light purple */
+    --primary-foreground: 67 56 202;
 
-    --secondary: 51 54 58; /* #33363a */
-    --secondary-foreground: 245 245 245;
+    --secondary: 99 102 241; /* Medium purple */
+    --secondary-foreground: 255 255 255;
 
-    --muted: 42 42 43;
-    --muted-foreground: 163 163 163; /* #a3a3a3 */
+    --muted: 99 102 241;
+    --muted-foreground: 203 213 225;
 
-    --accent: 51 54 58;
-    --accent-foreground: 245 245 245;
+    --accent: 129 140 248;
+    --accent-foreground: 67 56 202;
 
-    --destructive: 220 38 38;
+    --destructive: 248 113 113;
     --destructive-foreground: 255 255 255;
 
-    --border: 63 79 95; /* #3f4f5f */
-    --input: 42 42 43;
-    --ring: 147 197 253;
+    --border: 99 102 241;
+    --input: 88 80 236;
+    --ring: 129 140 248;
 
-    /* Calculator specific colors - Dark mode */
-    --calc-display: 42 42 43; /* Dark display */
-    --calc-button: 51 54 58; /* Dark buttons */
-    --calc-button-hover: 75 85 99;
-    --calc-operator: 6 182 212; /* Cyan operator */
-    --calc-operator-hover: 14 165 233;
-    --emoji-opacity: 0.08;
+    /* Calculator specific colors - Dark mode purple theme */
+    --calc-display: 67 56 202; /* Dark purple display */
+    --calc-button: 99 102 241; /* Purple buttons */
+    --calc-button-hover: 129 140 248;
+    --calc-operator: 249 115 22; /* Orange operators like reference */
+    --calc-operator-hover: 234 88 12;
+    --emoji-opacity: 0.06;
   }
 }
 
@@ -206,21 +206,21 @@
   }
 }
 
-/* Professional glassmorphism effect */
+/* User-friendly glassmorphism effect */
 .glass-professional {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: 1px solid hsl(var(--border));
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
 }
 
 .dark .glass-professional {
-  background: rgba(42, 42, 43, 0.95);
+  background: rgba(88, 80, 236, 0.95);
   border: 1px solid hsl(var(--border));
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(129, 140, 248, 0.2);
 }
 
-/* Professional button styles with high contrast */
+/* User-friendly button styles */
 .calc-button {
   background: hsl(var(--calc-button));
   border: 1px solid hsl(var(--border));
@@ -233,17 +233,17 @@
 .calc-button:hover {
   background: hsl(var(--calc-button-hover));
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
   border-color: hsl(var(--calc-operator));
 }
 
 .dark .calc-button:hover {
-  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+  box-shadow: 0 4px 12px rgba(129, 140, 248, 0.3);
 }
 
 .calc-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(236, 72, 153, 0.1);
 }
 
 .calc-operator {
@@ -257,7 +257,7 @@
 .calc-operator:hover {
   background: hsl(var(--calc-operator-hover));
   border-color: hsl(var(--calc-operator-hover));
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 16px rgba(236, 72, 153, 0.4);
 }
 
 .dark .calc-operator {
@@ -267,7 +267,7 @@
 
 .dark .calc-operator:hover {
   background: hsl(var(--calc-operator-hover));
-  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.3);
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4);
 }
 
 .calc-display {
@@ -276,12 +276,12 @@
   color: hsl(var(--foreground));
   font-weight: 700;
   font-size: 2.5rem;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 2px 4px rgba(236, 72, 153, 0.1);
 }
 
 .dark .calc-display {
   border-color: hsl(var(--border));
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 2px 4px rgba(129, 140, 248, 0.2);
 }
 
 /* High contrast text for accessibility */
@@ -295,25 +295,25 @@
   font-weight: 500;
 }
 
-/* Robot styles with proper contrast */
+/* Robot styles with user-friendly colors */
 .robot-eye {
   background: hsl(var(--foreground));
 }
 
 .dark .robot-eye {
-  background: rgb(6, 182, 212);
-  box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+  background: rgb(129, 140, 248);
+  box-shadow: 0 0 8px rgba(129, 140, 248, 0.6);
 }
 
 .robot-body {
-  background: linear-gradient(135deg, rgb(243, 244, 246), rgb(249, 250, 251));
+  background: linear-gradient(135deg, rgb(251, 207, 232), rgb(249, 168, 212));
   border: 2px solid hsl(var(--border));
 }
 
 .dark .robot-body {
-  background: linear-gradient(135deg, rgb(51, 54, 58), rgb(42, 42, 43));
+  background: linear-gradient(135deg, rgb(99, 102, 241), rgb(88, 80, 236));
   border: 2px solid hsl(var(--border));
-  box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+  box-shadow: 0 0 15px rgba(129, 140, 248, 0.3);
 }
 
 /* Floating emojis with proper opacity */
@@ -327,5 +327,5 @@
 
 .dark .floating-emoji {
   filter: brightness(1.2);
-  text-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+  text-shadow: 0 0 10px rgba(129, 140, 248, 0.3);
 }
