@@ -3,87 +3,103 @@
 @tailwind components;
 @tailwind utilities;
 
-/* User-friendly design system with pink accents */
+/* Modern, playful, soft color palette */
 
 @layer base {
   :root {
-    /* Light mode - User-friendly with pink accents */
-    --background: 255 255 255; /* Pure white */
-    --foreground: 31 31 31; /* Dark text */
+    /* Light mode - Modern lovable design */
+    --background: 250 250 250; /* #FAFAFA */
+    --foreground: 51 51 51; /* #333333 */
 
-    --card: 255 255 255; /* Pure white cards */
-    --card-foreground: 31 31 31;
+    --card: 167 199 231; /* #A7C7E7 - Calculator panel */
+    --card-foreground: 51 51 51;
 
     --popover: 255 255 255;
-    --popover-foreground: 31 31 31;
+    --popover-foreground: 51 51 51;
 
-    --primary: 236 72 153; /* Pink primary */
+    --primary: 255 111 97; /* #FF6F61 - Operators */
     --primary-foreground: 255 255 255;
 
-    --secondary: 249 168 212; /* Light pink secondary */
-    --secondary-foreground: 31 31 31;
+    --secondary: 220 228 236; /* #DCE4EC - Button hover */
+    --secondary-foreground: 51 51 51;
 
-    --muted: 251 113 133; /* Pink muted */
-    --muted-foreground: 107 114 126;
+    --muted: 197 184 247; /* #C5B8F7 - Alternative panel */
+    --muted-foreground: 51 51 51;
 
-    --accent: 236 72 153; /* Pink accent */
+    --accent: 255 154 139; /* #FF9A8B - Alternative operators */
     --accent-foreground: 255 255 255;
 
-    --destructive: 239 68 68;
+    --destructive: 255 107 107; /* #FF6B6B - Clear button */
     --destructive-foreground: 255 255 255;
 
-    --border: 249 168 212; /* Light pink borders */
+    --border: 220 228 236; /* Soft border */
     --input: 255 255 255;
-    --ring: 236 72 153;
+    --ring: 255 111 97;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Calculator specific colors - Light mode with pink */
-    --calc-display: 255 255 255; /* White display */
-    --calc-button: 251 207 232; /* Light pink buttons */
-    --calc-button-hover: 249 168 212;
-    --calc-operator: 236 72 153; /* Pink operators */
-    --calc-operator-hover: 219 39 119;
-    --emoji-opacity: 0.04;
+    /* Calculator specific colors */
+    --calc-panel: 167 199 231; /* #A7C7E7 */
+    --calc-display: 255 255 255; /* #FFFFFF */
+    --calc-display-alt: 255 248 220; /* #FFF8DC */
+    --calc-button: 255 255 255; /* #FFFFFF */
+    --calc-button-hover: 220 228 236; /* #DCE4EC */
+    --calc-operator: 255 111 97; /* #FF6F61 */
+    --calc-operator-hover: 255 154 139; /* #FF9A8B */
+    --calc-clear: 255 107 107; /* #FF6B6B */
+    --calc-clear-hover: 255 87 87;
+    --emoji-opacity: 0.03;
+    
+    /* Robot gradient colors */
+    --robot-start: 167 199 231; /* #A7C7E7 */
+    --robot-end: 255 154 139; /* #FF9A8B */
   }
 
   .dark {
-    /* Dark mode - Purple/blue theme like reference */
-    --background: 67 56 202; /* Purple background */
-    --foreground: 255 255 255;
+    /* Keep existing dark mode but softer */
+    --background: 30 30 31; /* Softer dark */
+    --foreground: 250 250 250;
 
-    --card: 88 80 236; /* Purple cards */
-    --card-foreground: 255 255 255;
+    --card: 45 45 47; /* Softer dark cards */
+    --card-foreground: 250 250 250;
 
-    --popover: 88 80 236;
-    --popover-foreground: 255 255 255;
+    --popover: 45 45 47;
+    --popover-foreground: 250 250 250;
 
-    --primary: 129 140 248; /* Light purple */
-    --primary-foreground: 67 56 202;
+    --primary: 167 199 231; /* Light blue in dark */
+    --primary-foreground: 30 30 31;
 
-    --secondary: 99 102 241; /* Medium purple */
-    --secondary-foreground: 255 255 255;
+    --secondary: 75 75 77;
+    --secondary-foreground: 250 250 250;
 
-    --muted: 99 102 241;
-    --muted-foreground: 203 213 225;
+    --muted: 75 75 77;
+    --muted-foreground: 180 180 185;
 
-    --accent: 129 140 248;
-    --accent-foreground: 67 56 202;
+    --accent: 197 184 247; /* Purple accent */
+    --accent-foreground: 30 30 31;
 
-    --destructive: 248 113 113;
+    --destructive: 255 107 107;
     --destructive-foreground: 255 255 255;
 
-    --border: 99 102 241;
-    --input: 88 80 236;
-    --ring: 129 140 248;
+    --border: 75 75 77;
+    --input: 45 45 47;
+    --ring: 167 199 231;
 
-    /* Calculator specific colors - Dark mode purple theme */
-    --calc-display: 67 56 202; /* Dark purple display */
-    --calc-button: 99 102 241; /* Purple buttons */
-    --calc-button-hover: 129 140 248;
-    --calc-operator: 249 115 22; /* Orange operators like reference */
-    --calc-operator-hover: 234 88 12;
-    --emoji-opacity: 0.06;
+    /* Calculator specific colors - Dark mode */
+    --calc-panel: 45 45 47;
+    --calc-display: 35 35 37;
+    --calc-display-alt: 35 35 37;
+    --calc-button: 60 60 62;
+    --calc-button-hover: 80 80 82;
+    --calc-operator: 255 154 139;
+    --calc-operator-hover: 255 111 97;
+    --calc-clear: 255 107 107;
+    --calc-clear-hover: 255 87 87;
+    --emoji-opacity: 0.04;
+    
+    /* Robot gradient colors */
+    --robot-start: 75 75 77;
+    --robot-end: 167 199 231;
   }
 }
 
@@ -206,114 +222,115 @@
   }
 }
 
-/* User-friendly glassmorphism effect */
+/* Modern lovable glassmorphism effect */
 .glass-professional {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid hsl(var(--border));
-  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
+  background: rgb(var(--calc-panel));
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(167, 199, 231, 0.15);
 }
 
 .dark .glass-professional {
-  background: rgba(88, 80, 236, 0.95);
-  border: 1px solid hsl(var(--border));
-  box-shadow: 0 4px 20px rgba(129, 140, 248, 0.2);
+  background: rgb(var(--calc-panel));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* User-friendly button styles */
+/* Modern button styles with 3D feel */
 .calc-button {
-  background: hsl(var(--calc-button));
-  border: 1px solid hsl(var(--border));
-  color: hsl(var(--foreground));
+  background: rgb(var(--calc-button));
+  border: 1px solid rgb(var(--border));
+  color: rgb(var(--foreground));
   font-weight: 600;
   font-size: 1.25rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .calc-button:hover {
-  background: hsl(var(--calc-button-hover));
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
-  border-color: hsl(var(--calc-operator));
-}
-
-.dark .calc-button:hover {
-  box-shadow: 0 4px 12px rgba(129, 140, 248, 0.3);
+  background: rgb(var(--calc-button-hover));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(167, 199, 231, 0.25);
+  border-color: rgb(var(--calc-operator));
 }
 
 .calc-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(236, 72, 153, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .calc-operator {
-  background: hsl(var(--calc-operator));
+  background: rgb(var(--calc-operator));
   color: white;
   font-weight: 700;
-  border: 1px solid hsl(var(--calc-operator));
+  border: 1px solid rgb(var(--calc-operator));
   font-size: 1.25rem;
+  box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
 }
 
 .calc-operator:hover {
-  background: hsl(var(--calc-operator-hover));
-  border-color: hsl(var(--calc-operator-hover));
-  box-shadow: 0 4px 16px rgba(236, 72, 153, 0.4);
+  background: rgb(var(--calc-operator-hover));
+  border-color: rgb(var(--calc-operator-hover));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 111, 97, 0.4);
 }
 
-.dark .calc-operator {
-  background: hsl(var(--calc-operator));
-  border-color: hsl(var(--calc-operator));
+.calc-clear {
+  background: rgb(var(--calc-clear));
+  color: white;
+  font-weight: 700;
+  border: 1px solid rgb(var(--calc-clear));
+  font-size: 1.25rem;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
 }
 
-.dark .calc-operator:hover {
-  background: hsl(var(--calc-operator-hover));
-  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4);
+.calc-clear:hover {
+  background: rgb(var(--calc-clear-hover));
+  border-color: rgb(var(--calc-clear-hover));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4);
 }
 
 .calc-display {
-  background: hsl(var(--calc-display));
-  border: 1px solid hsl(var(--border));
-  color: hsl(var(--foreground));
+  background: rgb(var(--calc-display));
+  border: 1px solid rgb(var(--border));
+  color: rgb(var(--foreground));
   font-weight: 700;
   font-size: 2.5rem;
-  box-shadow: inset 0 2px 4px rgba(236, 72, 153, 0.1);
-}
-
-.dark .calc-display {
-  border-color: hsl(var(--border));
-  box-shadow: inset 0 2px 4px rgba(129, 140, 248, 0.2);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* High contrast text for accessibility */
 .text-display {
-  color: hsl(var(--foreground));
+  color: rgb(var(--foreground));
   font-weight: 700;
 }
 
 .text-muted-accessible {
-  color: hsl(var(--muted-foreground));
+  color: rgb(var(--muted-foreground));
   font-weight: 500;
 }
 
-/* Robot styles with user-friendly colors */
+/* Modern robot styles with gradient */
 .robot-eye {
-  background: hsl(var(--foreground));
+  background: rgb(var(--foreground));
 }
 
 .dark .robot-eye {
-  background: rgb(129, 140, 248);
-  box-shadow: 0 0 8px rgba(129, 140, 248, 0.6);
+  background: rgb(167, 199, 231);
+  box-shadow: 0 0 8px rgba(167, 199, 231, 0.6);
 }
 
 .robot-body {
-  background: linear-gradient(135deg, rgb(251, 207, 232), rgb(249, 168, 212));
-  border: 2px solid hsl(var(--border));
+  background: linear-gradient(135deg, rgb(var(--robot-start)), rgb(var(--robot-end)));
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(167, 199, 231, 0.2);
 }
 
 .dark .robot-body {
-  background: linear-gradient(135deg, rgb(99, 102, 241), rgb(88, 80, 236));
-  border: 2px solid hsl(var(--border));
-  box-shadow: 0 0 15px rgba(129, 140, 248, 0.3);
+  background: linear-gradient(135deg, rgb(var(--robot-start)), rgb(var(--robot-end)));
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 /* Floating emojis with proper opacity */
@@ -326,6 +343,5 @@
 }
 
 .dark .floating-emoji {
-  filter: brightness(1.2);
-  text-shadow: 0 0 10px rgba(129, 140, 248, 0.3);
+  filter: brightness(1.1);
 }
